@@ -1,36 +1,163 @@
 {% load static %}
 
-<footer class="section-footer border-top">
+<footer class="section-footer border-top" style="background-color: #ffffff;">
     <div class="container">
-        <section class="footer-bottom border-top row">
-            <div class="col-md-2">
-                <p class="text-muted"> &copy 2025 Moda </p>
+        <!-- Верхняя часть футера с разделами -->
+        <section class="footer-top py-5">
+            <div class="row">
+                <!-- О нас -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="font-weight-bold mb-3">О нас</h5>
+                    <p class="text-muted">MensLine - интернет-магазин качественной мужской одежды и аксессуаров. Мы предлагаем стильные и современные модели по доступным ценам.</p>
+                </div>
+
+                <!-- Контакты -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="font-weight-bold mb-3">Контакты</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <i class="fa fa-envelope mr-2 text-primary"></i>
+                            <span>iman.zhsp@mail.ru</span>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fa fa-phone mr-2 text-primary"></i>
+                            <span>87005733615</span>
+                        </li>
+                        <li class="mb-2">
+                            <i class="fa fa-map-marker mr-2 text-primary"></i>
+                            <span>Алматы, Сайран</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Информация -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="font-weight-bold mb-3">Информация</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="{% url 'privacy_policy' %}" class="text-muted">Политика конфиденциальности</a></li>
+                        <li class="mb-2"><a href="{% url 'terms_of_use' %}" class="text-muted">Условия использования</a></li>
+                        <li class="mb-2"><a href="{% url 'shipping_payment' %}" class="text-muted">Доставка и оплата</a></li>
+                        <li class="mb-2"><a href="{% url 'returns' %}" class="text-muted">Возврат товара</a></li>
+                    </ul>
+                </div>
+
+                <!-- Социальные сети -->
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="font-weight-bold mb-3">Мы в соцсетях</h5>
+                    <div class="social-links mb-3 d-none d-lg-block">
+                        <a href="https://instagram.com/your_profile" class="social-icon mr-3" target="_blank">
+                            <i class="fa fa-instagram fa-2x text-dark"></i>
+                        </a>
+                        <a href="https://tiktok.com/your_profile" class="social-icon mr-3" target="_blank">
+                            <i class="fa fa-music fa-2x text-dark"></i>
+                        </a>
+                        <a href="https://wa.me/87005733615" class="social-icon" target="_blank">
+                            <i class="fa fa-whatsapp fa-2x text-dark"></i>
+                        </a>
+                    </div>
+
+                    <!-- Кнопка для мобильных - раскрывающиеся соцсети -->
+                    <div class="d-lg-none">
+                        <button class="btn btn-outline-primary btn-sm btn-block" type="button" data-toggle="collapse" data-target="#mobileSocial">
+                            <i class="fa fa-share-alt mr-2"></i>Наши соцсети
+                        </button>
+                        <div class="collapse mt-2" id="mobileSocial">
+                            <div class="d-flex justify-content-around">
+                                <a href="https://instagram.com/your_profile" class="social-icon" target="_blank">
+                                    <i class="fa fa-instagram fa-2x text-dark"></i>
+                                </a>
+                                <a href="https://tiktok.com/your_profile" class="social-icon" target="_blank">
+                                    <i class="fa fa-music fa-2x text-dark"></i>
+                                </a>
+                                <a href="https://wa.me/87005733615" class="social-icon" target="_blank">
+                                    <i class="fa fa-whatsapp fa-2x text-dark"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-8 text-md-center">
-                <span class="px-2">iman.zhsp@mail.ru</span>
-                <span class="px-2">87005733615</span>
-                <span class="px-2">Алматы Сайран</span>
-            </div>
-            <div class="col-md-2 text-md-right text-muted">
-                <i><img src="{% static './images/misc/mm.png' %}" height="26"></i>
-                <i class="fab fa-lg fa-cc-visa"></i>
-                <i class="fab fa-lg fa-cc-mastercard"></i>
+        </section>
+
+        <!-- Нижняя часть футера -->
+        <section class="footer-bottom border-top py-3">
+            <div class="row align-items-center">
+                <div class="col-md-3 mb-2 mb-md-0">
+                    <p class="text-muted mb-0"> &copy 2025 MensLine </p>
+                </div>
+                <div class="col-md-6 text-md-center mb-2 mb-md-0">
+                    <span class="d-block d-md-inline px-2">iman.zhsp@mail.ru</span>
+                    <span class="d-block d-md-inline px-2">87005733615</span>
+                    <span class="d-block d-md-inline px-2">Алматы Сайран</span>
+                </div>
+                <div class="col-md-3 text-md-right">
+                    <i class="mr-2"><img src="{% static './images/misc/mm.png' %}" height="26" alt="Payment"></i>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg"
+                         alt="Visa" width="50" class="mr-1">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Mastercard-logo.svg"
+                         alt="Mastercard" width="50">
+                </div>
             </div>
         </section>
     </div>
 </footer>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $('.thumb a').click(function(e){
-            e.preventDefault();
-            $('.mainImage img').attr('src', $(this).attr("href"));
-        })
-    })
+<style>
+/* Стили для футера */
+.social-icon {
+    transition: color 0.3s ease;
+}
 
-</script>
+.social-icon:hover {
+    color: #007bff !important;
+    text-decoration: none;
+}
 
+.footer-top h5 {
+    color: #343a40;
+    font-size: 1.1rem;
+}
 
-</body>
-</html>
+.footer-top a.text-muted:hover {
+    color: #007bff !important;
+    text-decoration: none;
+}
+
+/* Адаптивные стили для мобильных */
+@media (max-width: 768px) {
+    .footer-top .col-md-6 {
+        margin-bottom: 1.5rem;
+    }
+
+    .footer-bottom .text-md-center span {
+        display: block;
+        margin-bottom: 0.5rem;
+    }
+
+    .footer-bottom .text-md-right img {
+        margin-top: 0.5rem;
+    }
+
+    .social-links {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-top {
+        padding-top: 2rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    .footer-bottom {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    .footer-bottom .col-md-3,
+    .footer-bottom .col-md-6 {
+        text-align: center !important;
+        margin-bottom: 1rem;
+    }
+}
+</style>

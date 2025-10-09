@@ -27,3 +27,29 @@ def home(request):
         'slider_list': slider_list
     }
     return render(request, 'home.html', context)
+
+
+# Добавьте эти новые функции представления
+def privacy_policy(request):
+    context = {
+        'title': 'Политика конфиденциальности'
+    }
+    return render(request, 'privacy_policy.html', context)
+
+def terms_of_use(request):
+    context = {
+        'title': 'Условия использования'
+    }
+    return render(request, 'terms_of_use.html', context)
+
+def shipping_payment(request):
+    context = {
+        'title': 'Доставка и оплата'
+    }
+    return render(request, 'shipping_payment.html', context)
+
+def returns(request):
+    context = {
+        'title': 'Возврат товара'
+    }
+    return render(request, 'returns.html', context)

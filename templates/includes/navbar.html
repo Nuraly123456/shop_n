@@ -1,76 +1,74 @@
 {% load static %}
 
 <header class="section-header">
-    <nav class="navbar p-md-0 navbar-expand-sm navbar-light border-bottom">
-        <div class="container">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTop4"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarTop4">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link"> Ростов-на-дону </a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">8(800)700-70-70</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a href="#" class="nav-link">8(863)700-70-70</a>
-                    </li>
-                </ul>
-                <!--                <ul class="navbar-nav">-->
-                <!--                    <li><a href="#" class="nav-link">О нас</a></li>-->
-                <!--                    <li><a href="#" class="nav-link">Оплата</a></li>-->
-                <!--                    <li><a href="#" class="nav-link">Доставка</a></li>-->
-                <!--                    <li><a href="#" class="nav-link">Контакты</a></li>-->
-                <!--                </ul>-->
-            </div>
-        </div>
-    </nav>
 
     <section class="header-main border-bottom">
         <div class="container">
             <div class="row align-items-center">
+                <!-- Логотип -->
                 <div class="col-lg-2 col-md-3 col-6">
                     <a href="{% url 'home' %}" class="brand-wrap">
                         <img class="logo" src="{% static './images/logo.png' %}">
                     </a>
                 </div>
-                <div class="col-lg col-sm col-md col-6 flex-grow-0">
-                    <div class="category-wrap dropdown d-inline-block float-right">
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bars"></i> Все товары
-                        </button>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{% url 'store' %}">Все товары</a>
-                            {% for category in links %}
-                            <a class="dropdown-item" href="{{ category.get_url }}">{{ category.category_name }}</a>
-                            {% endfor %}
+
+                <!-- Кнопка меню для мобильных устройств -->
+                <div class="col-6 d-lg-none d-md-none text-right">
+                    <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#mobileMenu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                </div>
+
+                <!-- Основное меню для десктопов -->
+                <div class="col-lg col-sm col-md col-12 flex-grow-0 d-none d-lg-block">
+                    <div class="d-flex align-items-center">
+                        <div class="category-wrap dropdown d-inline-block">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bars"></i> Все товары
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{% url 'store' %}">Все товары</a>
+                                {% for category in links %}
+                                <a class="dropdown-item" href="{{ category.get_url }}">{{ category.category_name }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <a href="{% url 'store' %}" class="btn btn-outline-primary ml-2">Магазин</a>
+                    </div>
+                </div>
+
+                <!-- Поиск и корзина в одной строке -->
+                <div class="col-lg-5 col-md-6 col-sm-8 col-12">
+                    <div class="d-flex align-items-center">
+                        <!-- Поиск -->
+                        <div class="flex-grow-1 mr-2">
+                            <form action="{% url 'search' %}" class="search" method="GET">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Поиск" name="keyword">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="submit">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Корзина -->
+                        <div class="flex-shrink-0">
+                            <a href="{% url 'cart' %}" class="widget-header ml-2">
+                                <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
+                                <span class="badge badge-pill badge-danger notify">{{ cart_count }}</span>
+                            </a>
                         </div>
                     </div>
                 </div>
-                <a href="{% url 'store' %}" class="btn btn-outline-primary">Магазин</a>
 
-                <div class="col-lg  col-md-6 col-sm-12 col">
-                    <form action="{% url 'search' %}" class="search" method="GET">
-                        <div class="input-group w-100">
-                            <input type="text" class="form-control" style="width:60%;" placeholder="Поиск"
-                                   name="keyword">
-
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-
-                <div class="col-lg-3 col-sm-6 col-8 order-2 order-lg-3">
-                    <div class="d-flex justify-content-end mb-3 mb-lg-0">
+                <!-- Панель пользователя -->
+                <div class="col-lg-2 col-md-3 col-sm-4 col-12">
+                    <div class="d-flex justify-content-end align-items-center">
                         {% if user.id is None %}
-                        <div class="widget-header">
+                        <div class="widget-header d-none d-md-block text-right">
                             <small class="title text-muted">Добро пожаловать!</small>
                             <div>
                                 <a href="{% url 'login' %}">Вход</a> <span class="dark-transp"> | </span>
@@ -78,18 +76,53 @@
                             </div>
                         </div>
                         {% else %}
-                        <div class="widget-header">
-                            <small class="title text-muted">Добро пожаловать, {{ user.first_name }}!</small>
+                        <div class="widget-header d-none d-md-block text-right">
+                            <small class="title text-muted">Добро пожаловать!</small>
                             <div>
+                                <a href="{% url 'dashboard' %}">Кабинет</a> <span class="dark-transp"> | </span>
+                                <a href="{% url 'logout' %}">Выйти</a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Мобильное меню -->
+            <div class="collapse d-lg-none" id="mobileMenu">
+                <div class="py-2">
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-primary btn-block dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-bars"></i> Все товары
+                        </button>
+                        <div class="dropdown-menu w-100">
+                            <a class="dropdown-item" href="{% url 'store' %}">Все товары</a>
+                            {% for category in links %}
+                            <a class="dropdown-item" href="{{ category.get_url }}">{{ category.category_name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <a href="{% url 'store' %}" class="btn btn-outline-primary btn-block mt-2">Магазин</a>
+
+                    <!-- Мобильная панель пользователя -->
+                    <div class="mt-3 pt-2 border-top">
+                        {% if user.id is None %}
+                        <div class="widget-header text-center">
+                            <small class="title text-muted">Добро пожаловать!</small>
+                            <div class="mt-1">
+                                <a href="{% url 'login' %}">Вход</a> <span class="dark-transp"> | </span>
+                                <a href="{% url 'register' %}">Регистрация</a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="widget-header text-center">
+                            <small class="title text-muted">Добро пожаловать, {{ user.first_name }}!</small>
+                            <div class="mt-1">
                                 <a href="{% url 'dashboard' %}">Личный кабинет</a> <span class="dark-transp"> | </span>
                                 <a href="{% url 'logout' %}">Выйти</a>
                             </div>
                         </div>
                         {% endif %}
-                        <a href="{% url 'cart' %}" class="widget-header pl-3 ml-3">
-                            <div class="icon icon-sm rounded-circle border"><i class="fa fa-shopping-cart"></i></div>
-                            <span class="badge badge-pill badge-danger notify">{{ cart_count }}</span>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -97,3 +130,87 @@
     </section>
 
 </header>
+
+<style>
+/* Адаптивные стили для мобильных устройств */
+@media (max-width: 768px) {
+    .header-main .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .search .form-control {
+        font-size: 14px;
+    }
+
+    .widget-header .title {
+        font-size: 12px;
+    }
+
+    .widget-header a {
+        font-size: 14px;
+    }
+
+    .brand-wrap .logo {
+        max-height: 40px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 6px 12px;
+    }
+
+    .icon.icon-sm {
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+    }
+
+    .notify {
+        font-size: 10px;
+        padding: 2px 5px;
+    }
+
+    /* Стили для поиска и корзины на мобильных */
+    .col-lg-5 .d-flex {
+        flex-wrap: nowrap;
+    }
+
+    .col-lg-5 .flex-grow-1 {
+        min-width: 0; /* Чтобы поиск нормально сжимался */
+    }
+}
+
+@media (max-width: 576px) {
+    .search .input-group {
+        flex-wrap: nowrap;
+    }
+
+    .search .form-control {
+        width: auto;
+        flex-grow: 1;
+    }
+
+    /* На очень маленьких экранах делаем корзину более компактной */
+    .widget-header.ml-2 {
+        margin-left: 8px !important;
+    }
+
+    .icon.icon-sm {
+        width: 28px;
+        height: 28px;
+        line-height: 28px;
+    }
+}
+
+/* Стили для десктопной версии */
+@media (min-width: 992px) {
+    .col-lg-5 .d-flex {
+        justify-content: flex-end;
+    }
+
+    .col-lg-5 .flex-grow-1 {
+        max-width: 300px;
+    }
+}
+</style>

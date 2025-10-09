@@ -93,15 +93,15 @@ AUTH_USER_MODEL = 'accounts.Account'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-if 'POSTGRES_DB' in os.environ:
+if config('POSTGRES_DB', default=None):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'HOST': config('POSTGRES_HOST', 'localhost'),
-            'NAME': config('POSTGRES_DB', 'db_name'),
-            'USER': config('POSTGRES_USER', 'username'),
-            'PASSWORD': config('POSTGRES_PASSWORD', 'password'),
-            'PORT': config('POSTGRES_PORT', '5432'),
+            'NAME': config('POSTGRES_DB'),
+            'USER': config('POSTGRES_USER'),
+            'PASSWORD': config('POSTGRES_PASSWORD'),
+            'PORT': config('POSTGRES_PORT', cast=int, default=5432),
         }
     }
 else:
